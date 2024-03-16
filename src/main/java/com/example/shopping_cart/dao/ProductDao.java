@@ -2,7 +2,6 @@ package com.example.shopping_cart.dao;
 
 import com.example.shopping_cart.model.Cart;
 import com.example.shopping_cart.model.Product;
-import com.example.shopping_cart.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,7 +32,7 @@ public class ProductDao {
                 row.setId(rs.getInt("id"));
                 row.setName(rs.getString("name"));
                 row.setCategory(rs.getString("category"));
-                row.setPrice(rs.getInt("price"));
+                row.setPrice(rs.getDouble("price"));
                 row.setImage(rs.getString("image"));
 
                 products.add(row);
@@ -45,17 +44,33 @@ public class ProductDao {
     }
 
 
-    public void addProduct(Product product){
+    public boolean addProduct(Product product) {
         try {
-            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO product (name, category, price, quantity, image) VALUES (?, ?, ?, ?)");
-            preparedStatement.setString(1, product.getName());
-            preparedStatement.setString(2, product.getCategory());
-            preparedStatement.setInt(3, product.getPrice());
-            preparedStatement.setString(4, product.getImage());
-            preparedStatement.executeUpdate();
+            query = "INSERT INTO product (name, category, price, image) VALUES (?, ?, ?, ?)";
+            pst = this.con.prepareStatement(query);
+            pst.setString(1, product.getName());
+            pst.setString(2, product.getCategory());
+            pst.setDouble(3, product.getPrice());
+            pst.setString(4, product.getImage());
+            int rowCount = pst.executeUpdate();
+            return rowCount > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
+    }
+
+    public boolean deleteProduct(int id) {
+        try {
+            query = "DELETE FROM product WHERE id = ?";
+            pst = this.con.prepareStatement(query);
+            pst.setInt(1, id);
+            int rowCount = pst.executeUpdate();
+            return rowCount > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public List<Cart> getCartProducts(ArrayList<Cart> cartList){
@@ -73,7 +88,7 @@ public class ProductDao {
                         row.setId(rs.getInt("id"));
                         row.setName(rs.getString("name"));
                         row.setCategory(rs.getString("category"));
-                        row.setPrice(rs.getInt("price")*item.getQuantity());
+                        row.setPrice(rs.getDouble("price")*item.getQuantity());
                         row.setQuantity(item.getQuantity());
                         products.add(row);
                     }
@@ -123,7 +138,7 @@ public class ProductDao {
                 row.setId(rs.getInt("id"));
                 row.setName(rs.getString("name"));
                 row.setCategory(rs.getString("category"));
-                row.setPrice(rs.getInt("price"));
+                row.setPrice(rs.getDouble("price"));
                 row.setImage(rs.getString("image"));
             }
         } catch (Exception e) {

@@ -24,6 +24,11 @@
   <%@include file="/includes/head.jsp"%>
   <title>E-Commerce Cart</title>
 </head>
+<style>
+  body{
+    background-color: #e1e1e191;
+  }
+</style>
 <body>
 <%@include file="/includes/navbar.jsp"%>
 

@@ -24,6 +24,6 @@ public class AdminController extends HttpServlet {
         AdminDao adminDao = new AdminDao(ConnectionUtil.getConnection());
         adminDao.addAdmin(newAdmin);
 
-        response.sendRedirect("admin_dashboard.jsp");
+        response.sendRedirect("admin-success.jsp");
     }
 }

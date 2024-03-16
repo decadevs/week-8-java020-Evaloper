@@ -115,6 +115,7 @@
 </head>
 <body>
 <div class="signup-form">
+    <a href="index.jsp" class="head-link">Back to Home Page</a>
     <form action="signup" method="post">
         <h2>Sign Up</h2>
         <p>Please fill in this form to create an account!</p>

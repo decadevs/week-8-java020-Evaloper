@@ -59,4 +59,19 @@ public class AdminDao {
     }
 
 
+    public boolean emailExists(String email) {
+        boolean exists = false;
+        try {
+            PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT COUNT(*) FROM admin WHERE email = ?");
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                exists = resultSet.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return exists;
+    }
+
 }

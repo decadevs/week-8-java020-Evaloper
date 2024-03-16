@@ -25,9 +25,9 @@ public class AdminLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String email = request.getParameter("email"); // Corrected parameter name
-            String password = request.getParameter("password"); // Corrected parameter name
-            String token = request.getParameter("token"); // Corrected parameter name
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            String token = request.getParameter("token");
 
             try {
                 AdminDao adminDao = new AdminDao(DbCon.getConnection());

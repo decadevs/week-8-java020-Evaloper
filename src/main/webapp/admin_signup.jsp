@@ -107,6 +107,7 @@
 </head>
 <body>
 <div class="signup-form">
+    <a href="index.jsp" class="head-link">Back to Home Page</a>
     <form action="admin-signup" method="post">
         <h2>Create Account</h2>
         <p class="lead">It's free and hardly takes more than 30 seconds.</p>
