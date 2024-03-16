@@ -142,7 +142,7 @@
         </div>
         <p class="small text-center">By clicking the Sign-Up button, you agree to our <br><a href="#">Terms &amp; Conditions</a>, and <a href="#">Privacy Policy</a>.</p>
     </form>
-    <div class="text-center">Already have an account? <a href="adminLogin.jsp">Login here</a>.</div>
+    <div class="text-center">Already have an account? <a href="admin_login.jsp">Login here</a>.</div>
 </div>
 </body>
 </html>
