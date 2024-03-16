@@ -91,7 +91,7 @@ public class ProductDao {
         try {
             if (cartList.size() > 0) {
                 for (Cart item : cartList) {
-                    query = "select price from products where id=?";
+                    query = "select price from product where id=?";
                     pst = this.con.prepareStatement(query);
                     pst.setInt(1, item.getId());
                     rs = pst.executeQuery();
@@ -112,7 +112,7 @@ public class ProductDao {
     public Product getSingleProduct(int id) {
         Product row = null;
         try {
-            query = "select * from products where id=? ";
+            query = "select * from product where id=? ";
 
             pst = this.con.prepareStatement(query);
             pst.setInt(1, id);

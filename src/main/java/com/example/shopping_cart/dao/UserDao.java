@@ -19,7 +19,7 @@ public class UserDao {
 
     public void addUser(User user){
         try {
-            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO cartUsers (firstName, lastName, email, password) VALUES (?, ?, ?, ?)");
+            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)");
             preparedStatement.setString(1, user.getFirstName() );
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setString(3, user.getEmail());
@@ -33,7 +33,7 @@ public class UserDao {
     public User userLogin(String email, String password){
         User user = null;
         try {
-            query="select * from cartUsers where email=? and password=?";
+            query="select * from users where email=? and password=?";
             pst= this.con.prepareStatement(query);
             pst.setString(1, email);
             pst.setString(2, password);
