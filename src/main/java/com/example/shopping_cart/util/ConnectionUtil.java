@@ -5,9 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionUtil {
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/e_commerce";
-    private static final String JDBC_USERNAME = "root";
-    private static final String JDBC_PASSWORD = "Evaloper210422.";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/e_commerce"; private static final String JDBC_USERNAME = "root"; private static final String JDBC_PASSWORD = "Evaloper210422.";
 
     public static Connection getConnection(){
         Connection connection = null;

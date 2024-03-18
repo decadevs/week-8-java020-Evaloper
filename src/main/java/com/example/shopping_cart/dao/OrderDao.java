@@ -34,12 +34,12 @@ public class OrderDao {
             pst.setInt(2, model.getUid());
             pst.setInt(3, model.getQuantity());
             pst.setString(4, model.getDate());
-            pst.executeUpdate();
-            result = true;
+            int rowCount = pst.executeUpdate();
+            return rowCount > 0;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
-        return result;
+        return false;
     }
 
 

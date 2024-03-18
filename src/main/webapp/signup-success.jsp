@@ -8,7 +8,7 @@
 <h1>Signup Success</h1>
 <p>Your account has been created successfully! Login below.</p>
 <a href="login.jsp">Go to login page</a>
-<a href="index.jsp">Go to Home page</a>
+<a href="store.jsp">Go to Home page</a>
 </body>
 </html>
 

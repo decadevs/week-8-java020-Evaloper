@@ -1,121 +1,98 @@
-
-
-<%@ page import="java.util.List" %>
-<%@ page import="com.example.shopping_cart.model.User" %>
-<%@ page import="com.example.shopping_cart.dao.ProductDao" %>
-<%@ page import="com.example.shopping_cart.connection.DbCon" %>
-<%@ page import="com.example.shopping_cart.model.Product" %>
-<%@ page import="com.example.shopping_cart.model.Cart" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-
-<%
-    //    User auth = (User) request.getSession().getAttribute("auth");
-//    if (auth != null) {
-//        request.setAttribute("person", auth);
-//    }
-//    ProductDao pd = new ProductDao(DbCon.getConnection());
-//    List<Product> products = pd.getAllProducts();
-//
-//  ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
-//  if (cart_list != null) {
-//    request.setAttribute("cart_list", cart_list);
-//  }
-%>
-
-<!DOCTYPE html>
-<html lang="en">
+<%--
+  Created by IntelliJ IDEA.
+  User: user
+  Date: 3/12/24
+  Time: 5:22 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin Dashboard</title>
+    <title>Bootstrap Simple Login Form with Blue Background</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            color: #fff;
+            background: #ff47d9;
+        }
+        .form-control {
+            min-height: 41px;
+            background: #f2f2f2;
+            box-shadow: none !important;
+            border: transparent;
+        }
+        .form-control:focus {
+            background: #e2e2e2;
+        }
+        .form-control, .btn {
+            border-radius: 2px;
+        }
+        .login-form {
+            width: 350px;
+            margin: 30px auto;
+            text-align: center;
+        }
+        .login-form h2 {
+            margin: 10px 0 25px;
+        }
+        .login-form form {
+            color: #7a7a7a;
+            border-radius: 3px;
+            margin-bottom: 15px;
+            background: #fff;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+        .login-form .btn {
+            font-size: 16px;
+            font-weight: bold;
+            background: #ff47d9;
+            border: none;
+            outline: none !important;
+        }
+        .login-form .btn:hover, .login-form .btn:focus {
+            background: #ff47d9;
+        }
+        .login-form a {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .login-form a:hover {
+            text-decoration: none;
+        }
+        .login-form form a {
+            color: #7a7a7a;
+            text-decoration: none;
+        }
+        .login-form form a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-<div class="container-xl">
-    <div class="table-responsive">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h2>Manage <b>Products</b></h2>
-                    </div>
-                    <div class="col-sm-6">
-                        <!-- Add Product Button -->
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addProductModal">
-                            <i class="material-icons">&#xE147;</i> <span>Add Product</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <table class="table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Image</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- Iterate through productList to display products -->
-                <c:forEach var="product" items="${product}">
-                    <tr>
-                        <td>${product.name}</td>
-                        <td>${product.category}</td>
-                        <td>${product.price}</td>
-                        <td>${product.image}</td>
-                        <td>
-                            <!-- Add action buttons here if needed -->
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+<div class="login-form">
+    <form action="admin_dashboard.jsp" method="post">
+        <h2 class="text-center">Login</h2>
+        <div class="form-group has-error">
+            <input type="text" class="form-control" name="username" placeholder="Username" required="required">
         </div>
-    </div>
-</div>
-
-<!-- Add Product Modal HTML -->
-<div id="addProductModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form id="addProductForm" action="ProductController" method="post" enctype="multipart/form-data">
-                <div class="modal-header">
-                    <h4 class="modal-title">Add Product</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" class="form-control" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Category</label>
-                        <input type="text" class="form-control" name="category" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Price</label>
-                        <input type="number" step="0.01" class="form-control" name="price" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Image Path</label>
-                        <input type="text" class="form-control" name="image" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <input type="submit" class="btn btn-success" value="Add Product">
-                </div>
-            </form>
+        <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
         </div>
-    </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Admin token" required="required">
+        </div>
+        <div class="form-group">
+            <a href="adminDashboard.jsp"> <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button></a>
+        </div>
+        <p><a href="#">Lost your Password?</a></p>
+    </form>
+    <p class="text-center small">Don't have an account? <a href="adminSignup.jsp">Sign up here!</a></p>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

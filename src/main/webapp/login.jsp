@@ -71,7 +71,7 @@
   Time: 02:37
   To change this template use File | Settings | File Templates.
 --%>
-<a href="index.jsp" class="head-link">Back to Home Page</a>
+<a href="store.jsp" class="head-link">Back to Home Page</a>
 <div class="login-form">
     <form action="/user-login" method="post">
         <h2 class="text-center">Log in</h2>
